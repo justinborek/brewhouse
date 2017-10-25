@@ -10,12 +10,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1><input type = 'text'></input></h1>
+        <h2><input type = 'text'></input></h2>
+        <h3><button>Login</button></h3>
+        <h4><button>Get Started</button></h4>
+        <h5><button>I Just Need A Quick Calculation!</button></h5>
+
       </div>
     );
   }
 }
 
 export default App;
+
