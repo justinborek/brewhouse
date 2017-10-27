@@ -4,6 +4,9 @@ const Users = [
     password: 'password',
     firstName: 'Justin',
     lastName: 'Borek',
-    email: 'justinborek@gmail.com'
+    email: 'justinborek@gmail.com',
+    isSubscriber: true
   }
 ]
+
+export default Users;
