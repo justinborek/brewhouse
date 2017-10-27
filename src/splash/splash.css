@@ -1,5 +1,12 @@
 .splashPage{
   top: 0px;
+}
+.section{
+  width: 100%;
+}
+.section1{
+  display: flex;
+  top: 0px;
   background: radial-gradient(
     ellipse at center,
     rgba(0, 0, 0, 0.5) 0%,
@@ -10,4 +17,118 @@
   url(../images/homebrew1.png) center center no-repeat;;
   background-size: cover;
   height: 650px;
+}
+.section1_Content {
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:75%;
+  color: white;
+  text-align: center;
+}
+.section1 h1{
+  font-size: 64pt;
+  font-weight: bold;
+  opacity: .8;
+}
+.section1 button{
+    margin: 20px;
+    border: 2px solid white;
+    background-color: transparent;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.5s;  
+    font-size: 22px;
+    width: 250px;
+    border-radius: 50px;
+}
+.section1 button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.section1 button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.section1 button:hover span {
+  padding-right: 25px;
+}
+.section1 button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.section2{
+  background: white;
+  height: 600px;
+}
+.section3{
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.6) 51%,
+    rgba(0, 0, 0, 0.65) 63%,
+    rgba(0, 0, 0, 0.8) 99%
+  ),
+  url(../images/homebrew1.png) center center no-repeat;;
+  background-size: cover;
+  height: 600px;
+}
+.section4{
+  background: white;
+  height: 600px;
+}
+.footer{
+  bottom: 0;
+  background: rgba(14, 12, 12, 1);
+  height:100px;
+  margin: 0;
+}
+.footer button{
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top:20px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, .0);
+  border: none;
+  background: rgba(73, 72, 72, .7);
+  color: white;
+  opacity: .9;
+  font-size: 20pt;
+  transition: all 0.1s;
+}
+.footer button:hover{
+  border: 2px solid rgba(255, 255, 255, 1);
+}
+@media (max-width: 1174px){
+  .section1 h1{
+    font-size: 54px;
+  }
+}
+@media (max-width: 768px){
+  .section1{
+    height: 600px;
+  }
+  .section1 h1{
+    font-size: 48px;
+  }
+  .footer{
+    height: 80px;
+  }
+  .footer button{
+    height: 40px;
+    width: 40px;
+    font-size: 14pt;
+  }
 }

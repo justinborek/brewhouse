@@ -1,9 +1,7 @@
 .logo {
- scale: 100%;
  opacity: 1;
  height: 70px;
 }
-
 .navbar{
   background: rgba(14, 12, 12, 0.8);
   top: 0;
@@ -12,9 +10,13 @@
   font-size: 12pt;
   font-weight: bold;
 }
-
 .nav{
   padding-top: 7px;
+}
+@media (max-width: 768px) {
+  .logo{
+    height:55px;
+  }
 }
 
 
