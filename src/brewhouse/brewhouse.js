@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
+
 import userData from '../assets/user-data.js';
 import NavBar from '../navbar/navbar.js';
 
+import './brewhouse.css';
+
+import emptyCarboy from '../images/emptycarboy.png';
+
 const user = userData[0];
-const carboyData = Object.values(user.equipment.carboy)
+const carboyData = Object.entries(user.equipment.fermenters);
 class Brewhouse extends Component {
-  render (){
-    for (let i = 0; i < carboyData.length; i++){
-      if (carboyData[i] !== 0) {
-        return (
-          <div>{ carboyData }</div>
-        )
-      }
-  }
+  render(){
+    return(
+      <div className = 'brewhousePage'>
+        < NavBar />
+        <div className = 'carboyBox'>
+          { carboyData.map((currentCarboy) => { 
+            if (currentCarboy[1].activeRecipe !== '') {
+              return <div className = 'carboyItem'>
+                <img src = { emptyCarboy }/>
+                <h2>{ currentCarboy[1].activeRecipe }</h2>
+              </div>
+            }
+          })
+          }
+        </div>
+
+      </div>
+    )
   }
 }
 

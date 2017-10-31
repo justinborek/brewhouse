@@ -8,12 +8,28 @@ const Users = [
     isSubscriber: true,
     equipment: {
       kettleSize: 5,
-      carboy: {
-        oneGal: 0,
-        threeGal: 0,
-        fiveGal: 2,
-        sixGal: 2
-      } 
+      fermenters: {
+        1: {
+          type: 'carboy',
+          size: 5,
+          activeRecipe: 'IPA'
+        },
+        2: {
+          type: 'carboy',
+          size: 5,
+          activeRecipe: ''
+        },
+        3: {
+          type: 'carboy',
+          size: 6.5,
+          activeRecipe: 'Stout'
+        },
+        4: {
+          type: 'carboy',
+          size: 6.5,
+          activeRecipe: ''
+        }
+      }
     }
   }
 ]
