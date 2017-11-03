@@ -30,6 +30,22 @@ const Users = [
           activeRecipe: ''
         }
       }
+    },
+    recipes: {
+      IPA : {
+        recipeName: 'IPA',
+        recipeColor: {
+          SRM: 5.8,
+          HEX: '#AF6D26'
+        }
+      },
+      Stout: {
+        recipeName : 'Stout',
+        recipeColor: {
+          SRM: 36,
+          HEX: '#251712'
+        }
+      }
     }
   }
 ]
