@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './splash.css';
+import '../styles/splash.css';
 import userData from '../assets/user-data.js';
-import NavBar from '../navbar/navbar.js';
+import NavBar from './navbarSplash.js';
 import image1 from '../images/homebrew1.png';
 import { Button } from 'react-bootstrap';
 

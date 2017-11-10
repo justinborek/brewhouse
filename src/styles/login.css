@@ -1,0 +1,14 @@
+.loginPage{
+  top:0;
+}
+.loginFormContainer{
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24pt;
+  width: 75%
+}
+.logo{
+}

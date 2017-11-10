@@ -35,7 +35,7 @@ const Users = [
       IPA : {
         recipeName: 'IPA',
         recipeColor: {
-          SRM: 5.8,
+          SRM: 6,
           HEX: '#AF6D26'
         }
       },

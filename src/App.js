@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
 import './App.css';
-import Splash from './splash/splash.js';
-import Brewhouse from './brewhouse/brewhouse.js';
+import { Splash, Brewhouse, Login } from './components';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Brewhouse />
+        <Login />
       </div>
     );
   }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import userData from '../assets/user-data.js';
-import NavBar from '../navbar/navbar.js';
+import NavBar from './navbarSplash.js';
 
-import './brewhouse.css';
+import '../styles/brewhouse.css';
 
 import emptyCarboy from '../images/emptycarboy.png';
 
@@ -21,7 +21,8 @@ class Brewhouse extends Component {
             if (currentCarboy[1].activeRecipe !== '') {
               const currentRecipeColor = user.recipes[currentCarboy[1].activeRecipe].recipeColor.HEX;
               return <div className = 'carboyItem' >
-                <img src = { emptyCarboy } style = {{backgroundColor: currentRecipeColor}}/>
+                <img src = { emptyCarboy } style = 
+                  {{backgroundColor: currentRecipeColor}}/>
                 <h2>{ currentCarboy[1].activeRecipe }</h2>
               </div>
             }
