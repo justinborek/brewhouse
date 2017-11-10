@@ -7,6 +7,7 @@ import { Nav } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 class NavBar extends Component {
@@ -22,7 +23,7 @@ class NavBar extends Component {
     <Navbar.Collapse>
       <Nav pullRight>
         <NavItem eventKey={1} href="#">Sign Up</NavItem>
-        <NavItem eventKey={2} href="#">Log In</NavItem>
+        <NavItem><Link to="Login" style={{ textDecoration: 'none', color: 'white' }}>Log In</Link></NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
