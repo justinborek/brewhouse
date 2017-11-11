@@ -8,7 +8,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24pt;
-  width: 75%
+  width: 50%;
 }
-.logo{
+.logoContainer{
+  padding: 20px;
 }

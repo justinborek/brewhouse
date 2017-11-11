@@ -13,6 +13,16 @@
 .nav{
   padding-top: 7px;
 }
+.navLink{
+  text-decoration: none;
+  color: white;
+  opacity: .6;
+}
+.navLink:hover{
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
 @media (max-width: 768px) {
   .logo{
     height:55px;
