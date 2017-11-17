@@ -4,11 +4,8 @@ import ReactDOM from 'react-dom';
 import '../styles/login.css';
 import brewhouseLogo from '../images/brewhouse7.png';
 import Users from '../assets/user-data.js';
-import { Redirect } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-
-
 
 class Login extends Component {
 
@@ -17,14 +14,19 @@ class Login extends Component {
   }
 
   verifyUser = (user, pass) => {
+    let passToCheck = '';
     for (const activeUser in Users) {
-      if (Users[activeUser].username === user && Users[activeUser].password === pass) {
+      if (Users[activeUser].username === user || Users[activeUser].email === user) {
+         passToCheck = Users[activeUser].password;
+        console.log(passToCheck);
+      } 
+    }
+    if (passToCheck === ''){
+      alert('username does not exist');
+    } else if (passToCheck === pass){
         this.goToBrewhouse();
-      } else if (Users[activeUser].email === user && Users[activeUser].password === pass) {
-        this.goToBrewhouse();
-      } else{
-        alert('no match');
-      }
+    } else {
+      alert('password does not match username');
     }
   }
 

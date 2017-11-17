@@ -47,6 +47,55 @@ const Users = [
         }
       }
     }
+  },
+  {
+    username: 'testuser',
+    password: 'password',
+    firstName: 'test',
+    lastName: 'testuser',
+    email: 'testuser@gmail.com',
+    isSubscriber: true,
+    equipment: {
+      kettleSize: 5,
+      fermenters: {
+        1: {
+          type: 'carboy',
+          size: 5,
+          activeRecipe: 'IPA'
+        },
+        2: {
+          type: 'carboy',
+          size: 5,
+          activeRecipe: ''
+        },
+        3: {
+          type: 'carboy',
+          size: 6.5,
+          activeRecipe: 'Stout'
+        },
+        4: {
+          type: 'carboy',
+          size: 6.5,
+          activeRecipe: 'Stout'
+        }
+      }
+    },
+    recipes: {
+      IPA : {
+        recipeName: 'IPA',
+        recipeColor: {
+          SRM: 6,
+          HEX: '#AF6D26'
+        }
+      },
+      Stout: {
+        recipeName : 'Stout',
+        recipeColor: {
+          SRM: 36,
+          HEX: '#251712'
+        }
+      }
+    }
   }
 ]
 

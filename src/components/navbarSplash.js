@@ -21,7 +21,7 @@ class NavBar extends Component {
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">Sign Up</NavItem>
+        <NavItem><Link className = "navLink" to="UserCreator">Sign Up</Link></NavItem>
         <NavItem><Link className = "navLink" to="Login">Log In</Link></NavItem>
       </Nav>
     </Navbar.Collapse>
