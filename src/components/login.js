@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 import '../styles/login.css';
 import brewhouseLogo from '../images/brewhouse7.png';
 import Users from '../assets/user-data.js';
+import { getUser } from '../actions';
 
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
+  componentDidMount() {
+    this.props.getUser();
+  }
 
   goToBrewhouse = () => {
     this.props.history.push('Brewhouse');
@@ -55,4 +60,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps, { getUser })(Login);

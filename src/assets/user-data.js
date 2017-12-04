@@ -49,11 +49,11 @@ const Users = [
     }
   },
   {
-    username: 'testuser',
+    username: 'JohnDoe',
     password: 'password',
-    firstName: 'test',
-    lastName: 'testuser',
-    email: 'testuser@gmail.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'johndoe@gmail.com',
     isSubscriber: true,
     equipment: {
       kettleSize: 5,

@@ -43,10 +43,11 @@ class UserCreator extends Component {
     }
     newUser.isSubscriber = false;
   }
+  
   render(){
     return(
       <div className = 'container'>
-        <div className = 'content' id = 'basicinfo'>
+        <div className = 'content' id = 'basicInfo'>
           <h1> Welcome to Brewhouse! </h1>
           <p> First, let's collect some basic info. </p>
           <form>
@@ -74,8 +75,11 @@ class UserCreator extends Component {
               document.getElementById('pswd').value,
               document.getElementById('pswd2').value,
             )
-            console.log(newUser);
+            ('#basicInfo').toggleClass('fade');
           }}>Submit</button>
+        </div>
+        <div className = "content" id = "primaryInfo">
+          
         </div>
       </div>
     )
