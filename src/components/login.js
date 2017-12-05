@@ -4,35 +4,38 @@ import { connect } from 'react-redux';
 
 import '../styles/login.css';
 import brewhouseLogo from '../images/brewhouse7.png';
-import Users from '../assets/user-data.js';
-import { getUser } from '../actions';
+// import Users from '../assets/user-data.js';
+import { getUser, verifyUser } from '../actions';
 
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
-  componentDidMount() {
-    this.props.getUser();
-  }
+  // componentDidMount() {
+  //   this.props.getUser();
+  // }
 
   goToBrewhouse = () => {
     this.props.history.push('Brewhouse');
   }
 
-  verifyUser = (user, pass) => {
+  userVerification = (user, pass) => {
+    let currentUser = this.props.verifyUser(user, pass);
+    
+    console.log(`this is the current user's info ${this.state}`);
     let passToCheck = '';
-    for (const activeUser in Users) {
-      if (Users[activeUser].username === user || Users[activeUser].email === user) {
-         passToCheck = Users[activeUser].password;
-        console.log(passToCheck);
-      } 
-    }
-    if (passToCheck === ''){
-      alert('username does not exist');
-    } else if (passToCheck === pass){
-        this.goToBrewhouse();
-    } else {
-      alert('password does not match username');
-    }
+    // for (const activeUser in Users) {
+    //   if (Users[activeUser].username === user || Users[activeUser].email === user) {
+    //      passToCheck = Users[activeUser].password;
+    //     console.log(passToCheck);
+    //   } 
+    // }
+    // if (passToCheck === ''){
+    //   alert('username does not exist');
+    // } else if (passToCheck === pass){
+    //     this.goToBrewhouse();
+    // } else {
+    //   alert('password does not match username');
+    // }
   }
 
   render() {
@@ -51,7 +54,7 @@ class Login extends Component {
             </div>
           </form> 
           <button id="loginButton" onClick={() => {
-            this.verifyUser(document.getElementById("usr").value, document.getElementById("pwd").value)
+            this.userVerification(document.getElementById("usr").value, document.getElementById("pwd").value)
             }}>Login
           </button>
         </div>

@@ -27,7 +27,7 @@ const createUser = (req, res) => {
 
 const getUser = (req, res) => {
   const { username } = req.params;
-  User.findOne({ 'username': username })
+  User.findOne({  username })
     .select()
     .exec()
     .then(user => {
@@ -37,7 +37,22 @@ const getUser = (req, res) => {
     .catch(err => res.status(422).json(err));
 }
 
+const userLogin = (req, res) => {
+  const { username, password } = req.body;
+  User.findOne({ username, password })
+    .select()
+    .exec()
+    .then(user => {
+      if (user === null) {
+        throw new Error();
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(422).json({ error: err }));
+}
+
 module.exports = {
   createUser,
-  getUser
+  getUser,
+  userLogin
 };
