@@ -9,14 +9,21 @@
   transform: translate(-50%, -50%);
   width: 100%;
 }
+.content.offScreen {
+  transition: .5s;
+  left: -50%;
+}
 input{
   width: 50%;
 }
 #basicInfo {
+  background-color: white; 
   opacity: 1;
-  transition: opacity 0.2s ease-out;
+  transition: 2s ease-out;
+  z-index: 10;
 }
-#basicInfo.fade {
-  opacity: 0;
+#primaryInfo {
+  z-index: 9;
 }
+
 

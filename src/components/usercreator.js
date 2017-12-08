@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 
-import userData from '../assets/user-data.js';
-
 import '../styles/userCreator.css';
 
 const newUser = {};
+let userPassCheck = false;
+
+const swipeLeft = (element) => {
+  document.getElementById(element).animate([
+    { left: '50%', opacity: '1' },
+    { left: '-50%', opacity:  '0' }
+  ], {
+    duration: 250
+  });
+}
 
 class UserCreator extends Component {
   verifyBasicInfo = (name, email, user, pass, pass2) => {
-    if (!user){
-      alert('Please enter a username');
-    } else {
-      newUser.username = user;
-    }
-    if (!pass){
-      alert('Please enter a password');
-    }else{
-      if (pass === pass2){
-        newUser.password = pass;
-      } else {
-        alert('Passwords do not match, please double check and re-enter');
-      }
-    }
     const splitName = name.split(' ');
     if (splitName.length <= 1){
-      alert("Please enter a valid first and last name");
+      return alert("Please enter a valid first and last name");
     }else if (splitName.length > 2){
       let first = '';
       for (let i = 0; i < splitName.length-1; i++){
@@ -39,9 +33,25 @@ class UserCreator extends Component {
     if (email.includes('@') && email.includes('.')){
       newUser.email = email;
     } else {
-      alert('Please enter a valid email address');
+      return alert('Please enter a valid email address');
     }
+    if (!user){
+      return alert('Please enter a username');
+    } else {
+      newUser.username = user;
+    }
+    if (!pass){
+      return alert('Please enter a password');
+    }else{
+      if (pass === pass2){
+        newUser.password = pass;
+      } else {
+        return alert('Passwords do not match, please double check and re-enter');
+      }
+    }
+    newUser.shoppingList = []
     newUser.isSubscriber = false;
+    userPassCheck = true;
   }
   
   render(){
@@ -74,12 +84,15 @@ class UserCreator extends Component {
               document.getElementById('usr').value,
               document.getElementById('pswd').value,
               document.getElementById('pswd2').value,
-            )
-            ('#basicInfo').toggleClass('fade');
+            );
+            if (userPassCheck === true) { 
+              swipeLeft('basicInfo');
+              userPassCheck = false;
+            }
           }}>Submit</button>
         </div>
-        <div className = "content" id = "primaryInfo">
-          
+        <div className = 'content' id = 'primaryInfo'>
+          <h1>Test</h1>
         </div>
       </div>
     )

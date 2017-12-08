@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './App.css';
 import { Splash, Brewhouse, Login, UserCreator } from './components';
@@ -17,6 +18,12 @@ class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
 
 export default App;
 

@@ -46,7 +46,7 @@ const userLogin = (req, res) => {
       if (user === null) {
         throw new Error();
       }
-      res.json(user);
+      res.json(user); 
     })
     .catch(err => res.status(422).json({ error: err }));
 }

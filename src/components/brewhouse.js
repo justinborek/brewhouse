@@ -10,6 +10,7 @@ import emptyCarboy from '../images/emptycarboy.png';
 const user = userData[0];
 const carboyData = Object.entries(user.equipment.fermenters);
 
+
 class Brewhouse extends Component {
   render(){
     return(
