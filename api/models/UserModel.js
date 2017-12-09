@@ -27,8 +27,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
+  readyToBrew: Boolean,
   equipment: Object,
   recipes: Object,
+  shoppingList: Array
 });
 
 module.exports = mongoose.model('User', UserSchema);
