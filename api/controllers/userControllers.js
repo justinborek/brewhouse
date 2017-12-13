@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const User = require('../models/UserModel');
 
 const createUser = (req, res) => {
-  const { username, 
-    password, 
+  const password = req.password;
+  const { username,  
     firstName, 
     lastName, 
     email, 
@@ -23,7 +23,7 @@ const createUser = (req, res) => {
     .save()
     .then(createdUser => res.json(createdUser))
     .catch(err => res.status(422).json(err));
-}
+};
 
 const getUser = (req, res) => {
   const { username } = req.params;
@@ -38,17 +38,7 @@ const getUser = (req, res) => {
 }
 
 const userLogin = (req, res) => {
-  const { username, password } = req.body;
-  User.findOne({ username, password })
-    .select()
-    .exec()
-    .then(user => {
-      if (user === null) {
-        throw new Error();
-      }
-      res.json(user); 
-    })
-    .catch(err => res.status(422).json({ error: err }));
+  res.json(req.loggedInUser);
 }
 
 module.exports = {

@@ -4,7 +4,6 @@ import '../styles/userCreator.css';
 
 const newUser = {};
 let userPassCheck = false;
-let fermenterCount = 0;
 
 const swipeLeft = (element) => {
   document.getElementById(element).animate([
@@ -14,6 +13,14 @@ const swipeLeft = (element) => {
     duration: 300
   });
   document.getElementById(element).style.left = '-50%';
+}
+const generateFerms = (count, fermSize) => {
+  for (let i = 0; i < count; i++) {
+    newUser.equipment.fermenters[i] = {
+      size: fermSize,
+      activeRecipe: ''
+    }
+  }
 }
 
 class UserCreator extends Component {
@@ -51,7 +58,11 @@ class UserCreator extends Component {
         return alert('Passwords do not match, please double check and re-enter');
       }
     }
-    newUser.equipment = {};
+    newUser.equipment = {
+      kettleSize: null,
+      fermenters: {},
+      otherEquipment: []
+    };
     newUser.recipes = {};
     newUser.shoppingList = [];
     newUser.isSubscriber = false;
@@ -99,7 +110,7 @@ class UserCreator extends Component {
         </div>
         
         <div className = 'content' id = 'info2' >
-          <h1>Thanks!</h1>
+          <h1>Thanks {newUser.firstName}!</h1>
           <p>Are you already a brewer?</p>
           <button onClick={() => {
             let newUsers = document.getElementsByClassName('newUser');
@@ -144,6 +155,7 @@ class UserCreator extends Component {
             newUser.shoppingList.push('Kettle');
             newUser.readyToBrew = false;
             swipeLeft('new2-5');
+            document.getElementById('new4').style.visibility = 'visible';
           }}>OK</button>
         </div>
 
@@ -154,15 +166,50 @@ class UserCreator extends Component {
           </div>
           <button onClick={() => {
             const stringToCheck = parseInt(document.getElementById('kettleSize').value);
-            console.log(typeof stringToCheck);
             if (stringToCheck / stringToCheck === 1) {
               newUser.equipment.kettleSize = stringToCheck;
               swipeLeft('new3');
-              console.log(newUser);
+              document.getElementById('new4').style.visibility = 'visible';
             } else { 
               return alert('Please enter a valid number');
             }
           }}>OK</button>
+        </div>
+
+        <div className = 'content newUser' id = 'new4'>
+          <h1>How many gallons will your largest fermenter hold?</h1>
+          <p>(this is typically a carboy, bucket, or jug of some kind)</p>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterSize'></input>
+          </div>
+          <h1>How many fermenters of this size do you have?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterCount'></input>
+          </div>
+          <button onClick={() => {
+            generateFerms(document.getElementById('fermenterCount').value, document.getElementById('fermenterSize').value);
+            swipeLeft('new4');
+            document.getElementById('new5').style.visibility = 'visible';
+          }}>OK</button>
+          <button onClick={() => {
+            swipeLeft('new4');
+            document.getElementById('new4-5').style.visibility = 'visible';
+          }}>I don't have a fermenter</button>
+        </div>
+
+        <div className = 'content newUser' id = 'new4-5'>
+          <h2>Cool, we'll add that to your shopping list as well! Do you have any other equipment to add?</h2>
+          <button onClick={() => {
+            swipeLeft('new4-5');
+            document.getElementById('new7').style.visibility = 'visible';
+          }}>Yes</button>
+          <button onClick={() => {
+            // this is where we'll axios.post the newUser to the server
+            swipeLeft('new4-5');
+          }}>No</button>
+        </div>
+        
+        <div className = 'content newUser' id = 'new5'>
         </div>
       </div>
     )
