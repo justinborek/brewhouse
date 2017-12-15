@@ -3,6 +3,7 @@ import axios from 'axios';
 export const ADD_USER = 'ADD_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const VERIFY_USER = 'VERIFY_USER';
+export const GET_USER = 'GET_USER';
 
 export const verifyUser = (usr, pass) => {
   const user = {username: usr, password: pass};
@@ -19,4 +20,12 @@ export const addUser = (user) => {
     type: ADD_USER
   };
 };
+
+export const getUser = (username) => {
+  const user = axios.get(`http://localhost:3030/users/${username}`);
+  return{
+    type: GET_USER,
+    payload: user
+  }
+}
 

@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
   ADD_USER,
   UPDATE_USER,
-  VERIFY_USER
+  VERIFY_USER,
+  GET_USER
 } from '../actions';
 
 const userReducer = (user = {}, action) => {
@@ -12,6 +13,8 @@ const userReducer = (user = {}, action) => {
     case UPDATE_USER:
       return action.payload.data;
     case VERIFY_USER:
+      return action.payload.data;
+    case GET_USER:
       return action.payload.data;
     default: 
       return user;

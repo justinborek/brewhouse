@@ -63,6 +63,18 @@ input{
   background-color: white;
   visibility: hidden;
 }
+#brew1 {
+  background-color: white;
+  visibility: hidden;
+}
+#brew2 {
+  background-color: white;
+  visibility: hidden;
+}
+#brew3 {
+  background-color: white;
+  visibility: hidden;
+}
 #kettleSize {
   width: 10%;
 }

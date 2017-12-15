@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import '../styles/userCreator.css';
 
-import { addUser } from '../actions';
+import { getUser, addUser } from '../actions';
 
 const newUser = {};
 let userPassCheck = false;
@@ -15,6 +15,16 @@ const swipeLeft = (element) => {
     duration: 300
   });
   document.getElementById(element).style.left = '-50%';
+};
+
+const bringBack = (element) => {
+  document.getElementById(element).style.visibility = 'hidden';
+  document.getElementById(element).style.opacity = '1';
+  document.getElementById(element).style.left = '50%';
+}
+
+const setVisibility = (element) => {
+  document.getElementById(element).style.visibility = 'visible';
 };
 
 const generateFerms = (count, fermSize) => {
@@ -30,6 +40,8 @@ const generateFerms = (count, fermSize) => {
 
 class UserCreator extends Component {
   verifyBasicInfo = (name, email, user, pass, pass2) => {
+    const checkUser = getUser(user);
+    console.log(`this is the checkUser val in usercreator ${checkUser}`);
     const splitName = name.split(' ');
     if (splitName.length <= 1){
       return alert("Please enter a valid first and last name");
@@ -51,6 +63,8 @@ class UserCreator extends Component {
     }
     if (!user){
       return alert('Please enter a username');
+    } else if (checkUser === {}){
+      return alert("Username already in use");
     } else {
       newUser.username = user;
     }
@@ -73,13 +87,12 @@ class UserCreator extends Component {
     newUser.isSubscriber = false;
     newUser.readyToBrew = true;
     userPassCheck = true;
-  }
+  };
 
   completeForm = (user) => {
     addUser(newUser);
     this.props.history.push('Login');
   };
-  
   
   render(){
     return(
@@ -114,7 +127,7 @@ class UserCreator extends Component {
             );
             if (userPassCheck === true) { 
               swipeLeft('info1');
-              document.getElementById('info2').style.visibility = 'visible';
+              setVisibility('info2')
               userPassCheck = false;
             }
           }}>Submit</button>
@@ -124,16 +137,57 @@ class UserCreator extends Component {
           <h1>Thanks {newUser.firstName}!</h1>
           <p>Are you already a brewer?</p>
           <button onClick={() => {
-            let newUsers = document.getElementsByClassName('newUser');
-            for (let i = 0; i < newUsers.length; i++) {
-              newUsers[i].style.visibility = 'hidden';
-            }
             swipeLeft('info2');
+            setVisibility('brew1');
           }}>Yes</button>
           <button onClick={() => {
             swipeLeft('info2');
-            document.getElementById('new1').style.visibility = 'visible';
+            setVisibility('new1');
           }}>No</button>
+        </div>
+
+        <div className = 'content newUser' id = 'brew1' >
+          <h1>Thanks!</h1>
+          <p>Next, we're going to ask about the equipment you've got. 
+            It'll just take a few minutes and you can always add or remove
+            things later.</p>
+          <button onClick={() => {
+            swipeLeft('brew1');
+            setVisibility('brew2');
+          }}>Get Started</button>
+        </div>
+
+        <div className = 'content newUser' id = 'brew2' >
+          <h1>How many gallons will your largest brew kettle hold?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'kettleSize'></input>
+          </div>
+          <button onClick={() => {
+            const stringToCheck = parseInt(document.getElementById('kettleSize').value);
+            if (stringToCheck / stringToCheck === 1) {
+              newUser.equipment.kettleSize = stringToCheck;
+              swipeLeft('brew2');
+              setVisibility('brew3');
+            } else { 
+              return alert('Please enter a valid number');
+            }
+          }}>OK</button>
+        </div>
+
+        <div className = 'content newUser' id = 'brew3'>
+          <h1>What size primary fermenter do you use?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterSize'></input>
+          </div>
+          <h1>How many primaries of this size do you have?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterCount'></input>
+          </div>
+          <button onClick={() => {
+            generateFerms(document.getElementById('fermenterCount').value, document.getElementById('fermenterSize').value);
+            swipeLeft('brew3');
+            setVisibility('new5');
+          }}>OK</button>
         </div>
         
         <div className = 'content newUser' id = 'new1' >
@@ -144,7 +198,7 @@ class UserCreator extends Component {
             or remove equipment later.</p>
           <button onClick={() => {
             swipeLeft('new1');
-            document.getElementById('new2').style.visibility = 'visible';
+            setVisibility('new2');
           }}>Get Started</button>
         </div>
 
@@ -152,11 +206,11 @@ class UserCreator extends Component {
           <h1>Do you have a kettle to use for brewing?</h1>
             <button onClick={() => {
               swipeLeft('new2');
-              document.getElementById('new3').style.visibility = 'visible';
+              setVisibility('new3');
             }}>Yes</button>
             <button onClick={() => {
               swipeLeft('new2');
-              document.getElementById('new2-5').style.visibility = 'visible';
+              setVisibility('new2-5')
             }}>No</button>
         </div>
 
@@ -166,7 +220,7 @@ class UserCreator extends Component {
             newUser.shoppingList.push('Kettle');
             newUser.readyToBrew = false;
             swipeLeft('new2-5');
-            document.getElementById('new4').style.visibility = 'visible';
+            setVisibility('new4');
           }}>OK</button>
         </div>
 
@@ -180,7 +234,7 @@ class UserCreator extends Component {
             if (stringToCheck / stringToCheck === 1) {
               newUser.equipment.kettleSize = stringToCheck;
               swipeLeft('new3');
-              document.getElementById('new4').style.visibility = 'visible';
+              setVisibility('new4');
             } else { 
               return alert('Please enter a valid number');
             }
@@ -200,11 +254,14 @@ class UserCreator extends Component {
           <button onClick={() => {
             generateFerms(document.getElementById('fermenterCount').value, document.getElementById('fermenterSize').value);
             swipeLeft('new4');
-            document.getElementById('new5').style.visibility = 'visible';
+            setVisibility('new5');
           }}>OK</button>
           <button onClick={() => {
+            newUser.shoppingList.push('Fermenter');
+            newUser.readyToBrew = false;
             swipeLeft('new4');
             document.getElementById('new4-5').style.visibility = 'visible';
+            setVisibility('new4-5');
           }}>I don't have a fermenter</button>
         </div>
 
@@ -212,11 +269,11 @@ class UserCreator extends Component {
           <h2>Cool, we'll add that to your shopping list as well! Do you have any other equipment to add?</h2>
           <button onClick={() => {
             swipeLeft('new4-5');
-            document.getElementById('new7').style.visibility = 'visible';
+            setVisibility('new7');
           }}>Yes</button>
           <button onClick={() => {
-            // this is where we'll axios.post the newUser to the server
             swipeLeft('new4-5');
+            setVisibility('complete');
           }}>No</button>
         </div>
 
@@ -224,11 +281,11 @@ class UserCreator extends Component {
           <h2>Do you have any other fermenters?</h2>
           <button onClick={() => {
             swipeLeft('new5');
-            document.getElementById('new6').style.visibility = 'visible';
+            setVisibility('new6');
           }}>Yes</button>
           <button onClick={() => {
             swipeLeft('new5');
-            document.getElementById('new7').style.visibility = 'visible';
+            setVisibility('new7');
           }}>No</button>
         </div>
         
@@ -243,11 +300,9 @@ class UserCreator extends Component {
           </div>
           <button onClick={() => {
             generateFerms(document.getElementById('fermenterCount2').value, document.getElementById('fermenterSize2').value);
-            document.getElementById('new5').style.visibility = 'hidden';
-            document.getElementById('new5').style.opacity = '1';
-            document.getElementById('new5').style.left = '50%';
+            bringBack('new5');
             swipeLeft('new6');
-            document.getElementById('new5').style.visibility = 'visible';
+            setVisibility('new5');
           }}>OK</button>
         </div>
 
@@ -256,11 +311,11 @@ class UserCreator extends Component {
           <h2>(hydrometer, wort chiller, etc... you can always enter this later)</h2>
           <button onClick={() => {
             swipeLeft('new7');
-            document.getElementById('otherEquipment').style.visibility = 'visible';
+            setVisibility('otherEquipment');
           }}>Yes</button>
           <button onClick={() => {
             swipeLeft('new7');
-            document.getElementById('complete').style.visibility = 'visible';
+            setVisibility('complete');
           }}>No</button>
         </div>
 
@@ -268,7 +323,7 @@ class UserCreator extends Component {
           <h1>PLACEHOLDER FOR OTHER EQUIPMENT</h1>
           <button onClick={() => {
             swipeLeft('otherEquipment');
-            document.getElementById('complete').style.visibility = 'visible';
+            setVisibility('complete');
           }}>Ok</button>
         </div>
 

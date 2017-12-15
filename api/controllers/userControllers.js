@@ -28,11 +28,16 @@ const createUser = (req, res) => {
 const getUser = (req, res) => {
   const { username } = req.params;
   User.findOne({  username })
-    .select()
+    .select('username')
     .exec()
     .then(user => {
-      if (user === null) throw new Error();
-      res.json(user);
+      console.log(`this is the value of user in the userControllser ${user}`)
+      if (user === null) {
+        res = null;
+      }
+      if (!user === null) {
+        res.json(user);
+      }
     })
     .catch(err => res.status(422).json(err));
 }
