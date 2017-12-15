@@ -13,3 +13,10 @@ export const verifyUser = (usr, pass) => {
   };
 };
 
+export const addUser = (user) => {
+  axios.post('http://localhost:3030/new-user', user);
+  return{
+    type: ADD_USER
+  };
+};
+

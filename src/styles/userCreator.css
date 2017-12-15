@@ -47,6 +47,22 @@ input{
   background-color: white;
   visibility: hidden;
 }
+#new6 {
+  background-color: white;
+  visibility: hidden;
+}
+#new7 {
+  background-color: white;
+  visibility: hidden;
+}
+#otherEquipment{
+  background-color: white;
+  visibility: hidden;
+}
+#complete {
+  background-color: white;
+  visibility: hidden;
+}
 #kettleSize {
   width: 10%;
 }

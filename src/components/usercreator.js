@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import '../styles/userCreator.css';
 
+import { addUser } from '../actions';
+
 const newUser = {};
 let userPassCheck = false;
 
@@ -13,15 +15,18 @@ const swipeLeft = (element) => {
     duration: 300
   });
   document.getElementById(element).style.left = '-50%';
-}
+};
+
 const generateFerms = (count, fermSize) => {
-  for (let i = 0; i < count; i++) {
+  const startPos = Object.keys(newUser.equipment.fermenters).length;
+  const endPos = parseInt(startPos) + parseInt(count);
+  for (let i = startPos; i < endPos; i++) {
     newUser.equipment.fermenters[i] = {
       size: fermSize,
       activeRecipe: ''
     }
   }
-}
+};
 
 class UserCreator extends Component {
   verifyBasicInfo = (name, email, user, pass, pass2) => {
@@ -69,6 +74,12 @@ class UserCreator extends Component {
     newUser.readyToBrew = true;
     userPassCheck = true;
   }
+
+  completeForm = (user) => {
+    addUser(newUser);
+    this.props.history.push('Login');
+  };
+  
   
   render(){
     return(
@@ -208,9 +219,67 @@ class UserCreator extends Component {
             swipeLeft('new4-5');
           }}>No</button>
         </div>
-        
+
         <div className = 'content newUser' id = 'new5'>
+          <h2>Do you have any other fermenters?</h2>
+          <button onClick={() => {
+            swipeLeft('new5');
+            document.getElementById('new6').style.visibility = 'visible';
+          }}>Yes</button>
+          <button onClick={() => {
+            swipeLeft('new5');
+            document.getElementById('new7').style.visibility = 'visible';
+          }}>No</button>
         </div>
+        
+        <div className = 'content newUser' id = 'new6'>
+          <h1>How many gallons does this fermenter hold?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterSize2'></input>
+          </div>
+          <h1>How many fermenters of this size do you have?</h1>
+          <div className = 'form-group'>
+            <input type = 'number' id = 'fermenterCount2'></input>
+          </div>
+          <button onClick={() => {
+            generateFerms(document.getElementById('fermenterCount2').value, document.getElementById('fermenterSize2').value);
+            document.getElementById('new5').style.visibility = 'hidden';
+            document.getElementById('new5').style.opacity = '1';
+            document.getElementById('new5').style.left = '50%';
+            swipeLeft('new6');
+            document.getElementById('new5').style.visibility = 'visible';
+          }}>OK</button>
+        </div>
+
+        <div className = 'content newUser' id = 'new7'>
+          <h1>Almost done! Do you have any other equipment?</h1>
+          <h2>(hydrometer, wort chiller, etc... you can always enter this later)</h2>
+          <button onClick={() => {
+            swipeLeft('new7');
+            document.getElementById('otherEquipment').style.visibility = 'visible';
+          }}>Yes</button>
+          <button onClick={() => {
+            swipeLeft('new7');
+            document.getElementById('complete').style.visibility = 'visible';
+          }}>No</button>
+        </div>
+
+        <div className = 'content' id = 'otherEquipment'>
+          <h1>PLACEHOLDER FOR OTHER EQUIPMENT</h1>
+          <button onClick={() => {
+            swipeLeft('otherEquipment');
+            document.getElementById('complete').style.visibility = 'visible';
+          }}>Ok</button>
+        </div>
+
+        <div className = 'content' id = 'complete'>
+          <h1>Thanks! You're all set!</h1>
+          <h2>Next, we'll redirect you to our login page to sign in with your new account.</h2>
+          <button onClick={() => {
+            swipeLeft('complete');
+            this.completeForm(newUser);
+          }}>Ok</button>
+        </div> 
       </div>
     )
   }
