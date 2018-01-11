@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+ 
 import userData from '../assets/user-data.js';
 import NavBar from './navbarSplash.js';
 
@@ -7,18 +10,19 @@ import '../styles/brewhouse.css';
 
 import emptyCarboy from '../images/emptycarboy.png';
 
-const user = userData[0];
-const carboyData = Object.entries(user.equipment.fermenters);
+
 
 
 class Brewhouse extends Component {
   render(){
+    const user = this.props.user;
+    const carboyData = Object.entries(user.equipment.fermenters);
     return(
       <div className = 'brewhousePage'>
         < NavBar />
         <div className = 'carboyBox'>
           { carboyData.map((currentCarboy) => {
-            console.log(currentCarboy);
+            console.log (this.props);
             if (currentCarboy[1].activeRecipe !== '') {
               const currentRecipeColor = user.recipes[currentCarboy[1].activeRecipe].recipeColor.HEX;
               return <div className = 'carboyItem' >
@@ -35,5 +39,11 @@ class Brewhouse extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
 
-export default Brewhouse;
+
+export default connect(mapStateToProps)(Brewhouse);

@@ -15,11 +15,13 @@ class Login extends Component {
   }
 
   userVerification = (user, pass) => {
-    let currentUser = this.props.verifyUser(user, pass);
+    let promise = this.props.verifyUser(user, pass);
+    promise
+      .then(currentUser => this.goToBrewhouse());
   }
 
   logUser = () => {
-    console.log(this.props);
+    
   }
 
   render() {
