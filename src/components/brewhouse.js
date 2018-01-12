@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
  
 import userData from '../assets/user-data.js';
 import NavBar from './navbarSplash.js';
@@ -12,8 +13,28 @@ import emptyCarboy from '../images/emptycarboy.png';
 
 
 
-
 class Brewhouse extends Component {
+  componentWillMount() {
+    if (!this.props.user.username) {
+      this.props.history.push('Login');
+    }
+  }
+
+  recipes = [];
+  
+  componentDidMount() {
+    axios
+    .get('http://localhost:3030/recipes')
+    .then(response => {
+      response.data.forEach(recipe => {
+        this.recipes.push(recipe);
+      });
+    })
+    .catch(err => {
+      console.log(`Error in Brewhouse componentDidMount ${err}`);
+    });
+  };
+
   render(){
     const user = this.props.user;
     const carboyData = Object.entries(user.equipment.fermenters);
@@ -22,7 +43,6 @@ class Brewhouse extends Component {
         < NavBar />
         <div className = 'carboyBox'>
           { carboyData.map((currentCarboy) => {
-            console.log (this.props);
             if (currentCarboy[1].activeRecipe !== '') {
               const currentRecipeColor = user.recipes[currentCarboy[1].activeRecipe].recipeColor.HEX;
               return <div className = 'carboyItem' >
