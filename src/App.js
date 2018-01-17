@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
-import { Splash, Brewhouse, Login, UserCreator } from './components';
+import { Splash, Brewhouse, Login, UserCreator, RecipeSelect } from './components';
 
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
         <Route path="/Login" component={Login} />
         <Route path="/Brewhouse" component={Brewhouse} />
         <Route path='/UserCreator' component={UserCreator} />
+        <Route path='/RecipeSelect' component={RecipeSelect} />
       </div>
     );
   }

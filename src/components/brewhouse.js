@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
  
-import userData from '../assets/user-data.js';
 import NavBar from './navbarSplash.js';
+import CarouselInstance from './brewhouseCarousel';
 
-import '../styles/brewhouse.css';
+import '../styles/brewhouse.css'; 
 
-import emptyCarboy from '../images/emptycarboy.png';
-
+let fermTextHeader = '';
+let fermTextP = '';
+let buttonText = ''
 
 
 class Brewhouse extends Component {
@@ -20,39 +20,36 @@ class Brewhouse extends Component {
     }
   }
 
-  recipes = [];
-  
-  componentDidMount() {
-    axios
-    .get('http://localhost:3030/recipes')
-    .then(response => {
-      response.data.forEach(recipe => {
-        this.recipes.push(recipe);
-      });
-    })
-    .catch(err => {
-      console.log(`Error in Brewhouse componentDidMount ${err}`);
+  setFermenterStatus = () => {
+    this.props.user.equipment.fermenters.forEach(item => {
+      if (!item.activeRecipe) {
+        fermTextHeader = "Looks like you've got some empty carboys";
+        fermTextP = 'We should do something about that!';
+        buttonText = `Let's brew!`;
+        return;
+      } else {
+        fermTextHeader = "Looks like you've filled all your carboys";
+        fermTextP = "You've been busy!";
+        buttonText = "Add carboys";
+      }
     });
   };
 
   render(){
-    const user = this.props.user;
-    const carboyData = Object.entries(user.equipment.fermenters);
+    this.setFermenterStatus();
+
     return(
       <div className = 'brewhousePage'>
         < NavBar />
         <div className = 'carboyBox'>
-          { carboyData.map((currentCarboy) => {
-            if (currentCarboy[1].activeRecipe !== '') {
-              const currentRecipeColor = user.recipes[currentCarboy[1].activeRecipe].recipeColor.HEX;
-              return <div className = 'carboyItem' >
-                <img src = { emptyCarboy } style = 
-                  {{backgroundColor: currentRecipeColor}}/>
-                <h2>{ currentCarboy[1].activeRecipe }</h2>
-              </div>
-            }
-          })
-          }
+          < CarouselInstance />
+        </div>
+        <div className = 'fermText'>
+          <h3>{fermTextHeader}</h3>
+          <h3>{fermTextP}</h3>
+          <button onClick = {() => {
+            this.props.history.push('RecipeSelect')
+          }}>{buttonText}</button>
         </div>
       </div>
     )

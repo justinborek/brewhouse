@@ -8,20 +8,20 @@ import { Link } from 'react-router-dom';
 class NavBar extends Component {
   render() {
     return (
-  <Navbar inverse collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <img src = {brewhouseLogo} className = "logo" />
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav pullRight>
-        <NavItem><Link className = "navLink" to="UserCreator">Sign Up</Link></NavItem>
-        <NavItem><Link className = "navLink" to="Login">Log In</Link></NavItem>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <img src = {brewhouseLogo} className = "logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <NavItem><Link className = "navLink" to="UserCreator">Sign Up</Link></NavItem>
+            <NavItem><Link className = "navLink" to="Login">Log In</Link></NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }

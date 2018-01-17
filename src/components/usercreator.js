@@ -28,13 +28,13 @@ const setVisibility = (element) => {
 };
 
 const generateFerms = (count, fermSize) => {
-  const startPos = Object.keys(newUser.equipment.fermenters).length;
+  const startPos = newUser.equipment.fermenters.length;
   const endPos = parseInt(startPos) + parseInt(count);
   for (let i = startPos; i < endPos; i++) {
-    newUser.equipment.fermenters[i] = {
+    newUser.equipment.fermenters.push ({
       size: fermSize,
-      activeRecipe: ''
-    }
+      activeRecipe: {}
+    })
   }
 };
 
@@ -79,10 +79,10 @@ class UserCreator extends Component {
     }
     newUser.equipment = {
       kettleSize: null,
-      fermenters: {},
+      fermenters: [],
       otherEquipment: []
     };
-    newUser.recipes = {};
+    newUser.recipes = [];
     newUser.shoppingList = [];
     newUser.isSubscriber = false;
     newUser.readyToBrew = true;

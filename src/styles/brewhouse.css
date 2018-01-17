@@ -1,35 +1,11 @@
 .brewhousePage {
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .carboyBox{
-  margin: 0;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 40%;
   font-size: 24pt;
-  width: 75%
-}
-.carboyItem{
-  position: relative;
-  display: inline-flex;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.carboyItem img{
-  background: linear-gradient(to right, 
-    rgba(0,0,0,0.3) 0%,
-    rgba(0,0,0,0.2) 10%,
-    rgba(0,0,0,0.1) 15%,
-    rgba(0,0,0,0) 50%,
-    rgba(0,0,0,0.1) 85%,
-    rgba(0,0,0,0.2) 90%,
-    rgba(0,0,0,0.3) 100%);
-}
-
-h2{
-  position: absolute;
-  top: 100px;
-  left: 0;
-  width: 100%
+  padding-top: 100pt;
 }

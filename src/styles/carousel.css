@@ -1,0 +1,15 @@
+.carousel {
+  height: 400px;
+  background-color: blue;
+}
+
+.carboyItem img {
+  background: linear-gradient(to right, 
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.2) 10%,
+    rgba(0,0,0,0.1) 15%,
+    rgba(0,0,0,0) 50%,
+    rgba(0,0,0,0.1) 85%,
+    rgba(0,0,0,0.2) 90%,
+    rgba(0,0,0,0.3) 100%);
+}
