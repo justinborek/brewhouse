@@ -14,7 +14,9 @@ render() {
       <div className = "section1">
         <div className = 'section1_Content'>
           <h1> A better way to brew. </h1>
-          <button><span>Try it!</span></button>
+          <button onClick={() => {
+              this.props.history.push('UserCreator')
+            }}><span>Try it!</span></button>
         </div>
       </div>
       <div className = "section2">

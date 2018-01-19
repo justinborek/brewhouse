@@ -12,7 +12,7 @@ let recipes = [];
 let counter = 0;
 
 axios
-  .get('http://localhost:3030/recipes')
+  .get('https://brewhouse-backend.herokuapp.com/recipes')
   .then(response => {
     response.data.forEach(recipe => {
       recipes[counter] = recipe;
@@ -80,13 +80,26 @@ class RecipeSelect extends Component {
 					</Modal.Footer>
 				</Modal>
         <h1>What would you like to brew?</h1>
-        <div className = "recipeButton">
+        <div className = "recipeBox">
           { recipes.map((item) => {
+            let id = item.title.replace(/ /g, '');
+            let target = `#${id}`;
+            console.log(target);
             return (
-              <button onClick={() => {
-                this.chooseRecipe(item);
-                this.handleShow();
-              }}>{item.title}</button>
+              <div className='recipeBar'>
+                <h2>{item.title}</h2>
+                <h4>OG: {item.OG}</h4>
+                <h4>IBU: {item.IBU}</h4>
+                <h4>ABV: {item.ABV}</h4>
+                <button type="button" data-toggle="collapse" data-target={target}>Expand</button>
+                <div id={id} class="collapse">
+                  <p>{item.text}</p>
+                  <button onClick={() => {
+                    this.chooseRecipe(item);
+                    this.handleShow();
+                  }}>Brew It!</button>
+                </div>
+              </div>
             )
           })}
         </div>
