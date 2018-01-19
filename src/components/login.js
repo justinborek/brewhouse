@@ -20,10 +20,6 @@ class Login extends Component {
       .then(currentUser => this.goToBrewhouse());
   }
 
-  logUser = () => {
-    
-  }
-
   render() {
     return (
       <div className="loginPage">
@@ -41,7 +37,6 @@ class Login extends Component {
           </form> 
           <button id="loginButton" onClick={() => {
             this.userVerification(document.getElementById("usr").value, document.getElementById("pwd").value);
-            this.logUser();
             }}>Login
           </button>
         </div>

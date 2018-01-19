@@ -22,7 +22,7 @@ const userReducer = (user = {}, action) => {
 };
 
 const rootReducer = combineReducers({
-    user: userReducer
+    user: userReducer,
 });
 
 export default rootReducer;

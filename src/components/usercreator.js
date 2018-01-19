@@ -41,7 +41,6 @@ const generateFerms = (count, fermSize) => {
 class UserCreator extends Component {
   verifyBasicInfo = (name, email, user, pass, pass2) => {
     const checkUser = getUser(user);
-    console.log(`this is the checkUser val in usercreator ${checkUser}`);
     const splitName = name.split(' ');
     if (splitName.length <= 1){
       return alert("Please enter a valid first and last name");

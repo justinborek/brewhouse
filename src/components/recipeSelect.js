@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Modal, Button, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
+
+import { updateUser } from '../actions';
 
 import '../styles/recipeSelect.css';
 
@@ -77,7 +79,7 @@ class RecipeSelect extends Component {
             <Button onClick={this.moveToBrewhouse}>Ready!</Button>
 					</Modal.Footer>
 				</Modal>
-      <h1>What would you like to brew?</h1>
+        <h1>What would you like to brew?</h1>
         <div className = "recipeButton">
           { recipes.map((item) => {
             return (
@@ -92,6 +94,11 @@ class RecipeSelect extends Component {
     );
   };
 
+  componentWillUnmount() {
+    const user = this.props.user;
+    this.props.updateUser(user);
+  };
+
 };
 
 const mapStateToProps = (state) => {
@@ -100,4 +107,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(RecipeSelect);
+export default connect(mapStateToProps, { updateUser })(RecipeSelect);

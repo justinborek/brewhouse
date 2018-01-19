@@ -29,3 +29,11 @@ export const getUser = (username) => {
   }
 }
 
+export const updateUser = (user) => {
+  const updatedUser = axios.put(`http://localhost:3030/users/${user.username}`, user)
+  return {
+    type: UPDATE_USER,
+    payload: updatedUser
+  };
+}
+
