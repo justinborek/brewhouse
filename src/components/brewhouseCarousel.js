@@ -50,6 +50,7 @@ class CarouselInstance extends Component {
   render() {
     return (
       <Carousel 
+        className = "carousel"
         activeIndex={this.state.index}
         direction={this.state.direction}
         onSelect={this.handleSelect}
@@ -58,7 +59,7 @@ class CarouselInstance extends Component {
           if (currentCarboy.activeRecipe) {
             const currentRecipeColor = SRMtoRGB[currentCarboy.activeRecipe.color];
             return (
-              <Carousel.Item className = 'carboyItem'>
+              <Carousel.Item className = 'carouselItem'>
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
                   <Modal.Body>
                     <h4>{this.state.activeSlide.title}</h4>
@@ -70,15 +71,20 @@ class CarouselInstance extends Component {
                     <Button onClick={this.handleClose}>Close</Button>
                   </Modal.Footer>
                 </Modal>
-                <img 
-                  width={200}
-                  height={200}
-                  src={ emptyCarboy }  
-                  style={{backgroundColor: currentRecipeColor}}/>
-                <Carousel.Caption className = 'caption'>
-                  <h3>{currentCarboy.activeRecipe.title}</h3>
+                <div className="carboyItem">
+                  <img 
+                    className="carboyImage"
+                    src={ emptyCarboy }  
+                    style={{backgroundColor: currentRecipeColor}}/>
+                </div>
+                <Carousel.Caption>
+                  <div className = "caption">
+                    <h3>{currentCarboy.activeRecipe.title}</h3>
+                  </div>
                 </Carousel.Caption>
-                <Button onClick={this.handleShow}>Session Info</Button>
+                <div classname='carboyButton'>
+                  <Button onClick={this.handleShow}>Session Info</Button>
+                </div>
               </Carousel.Item>
             )
           }

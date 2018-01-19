@@ -40,7 +40,6 @@ class Brewhouse extends Component {
 
     return(
       <div className = 'brewhousePage'>
-        < NavBar />
         <div className = 'carboyBox'>
           < CarouselInstance />
         </div>

@@ -1,9 +1,17 @@
-.carousel {
-  height: 400px;
-  background-color: blue;
+.carousel-control.left, .carousel-control.right {
+  background-image: none
 }
-
-.carboyItem img {
+.carousel {
+  display: flex;
+  justify-content: center;
+  height: 475px;
+  width: 325px;
+}
+.carboyItem {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+.carboyImage {
   background: linear-gradient(to right, 
     rgba(0,0,0,0.3) 0%,
     rgba(0,0,0,0.2) 10%,
@@ -13,3 +21,7 @@
     rgba(0,0,0,0.2) 90%,
     rgba(0,0,0,0.3) 100%);
 }
+.caption {
+  padding-bottom: 0px;
+}
+
