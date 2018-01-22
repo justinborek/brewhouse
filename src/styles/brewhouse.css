@@ -7,7 +7,7 @@
   background: linear-gradient(to bottom, 
     rgba(0,0,0,0.4) 25%,
     rgba(0,0,0,0.8) 100%), 
-    rgb(24, 66, 0);
+    rgb(4, 10, 0);
 }
 .carboyBox{
   display: flex;
