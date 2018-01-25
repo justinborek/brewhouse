@@ -6,22 +6,37 @@
   justify-content: center;
   height: 475px;
   width: 325px;
+  background-color: white;
 }
 .carboyItem {
   padding-top: 80px;
   padding-bottom: 50px;
 }
+.carboyColor {
+  width: 302px;
+  height: 302px;
+  z-index: 1;
+  position: absolute;
+  top: 60%;
+  right: 3.5%;
+}
+.carboyGradient {
+  width: 302px;
+  height: 302px;
+  z-index: 2;
+  position: absolute;
+  top: 60%;
+  right: 3.5%;
+}
 .carboyImage {
-  background: linear-gradient(to right, 
-    rgba(0,0,0,0.3) 0%,
-    rgba(0,0,0,0.2) 10%,
-    rgba(0,0,0,0.1) 15%,
-    rgba(0,0,0,0) 50%,
-    rgba(0,0,0,0.1) 85%,
-    rgba(0,0,0,0.2) 90%,
-    rgba(0,0,0,0.3) 100%);
+  width: 150px;
+  height: 300px;
+  position: absolute;
+  top: 60%;
+  right: 27%;
+  z-index: 3;
 }
 .caption {
-  padding-bottom: 0px;
+  color: black;
 }
 
